@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>软微各场所人数统计</title>
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/index1.css">
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <style>
+        .boxnav{
+        padding: 10px;
+        height: 500px;
+    } -->
+    </style>
+</head>
+<script>
+    $(document).ready(function () {
+        var whei = $(window).width()
+        $("html").css({ fontSize: whei / 22 });
+        $(window).resize(function () {
+            var whei = $(window).width();
+            $("html").css({ fontSize: whei / 22 })
+        });
+    });
+</script>
+<body>
+<div class="main">
+    <div class="header">
+        <div class="header-left fl" id="time"></div>
+        <div class="header-center fl">
+            <div class="header-title">
+                软微各场所人数统计
+            </div>
+            <div class="header-img"></div>
+        </div>
+        <div class="header-right fl"></div>
+        <div class="header-bottom fl"></div>
+    </div>
+
+
+    <div class="center">
+        <div class="center-left fl">
+            <div class="left-top rightTop border">
+                <div class="title">教室人数</div>
+                <div class="boxnav" id="chart111"></div>
+
+            </div>
+
+            <div class="left-bottom rightTop border">
+                <div class="title">体育场馆人数</div>
+                <div class="bottom-b">
+                    <div id="chart222" style="height: 270px;"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="center-cen fl">
+            <div class="cen-top rightTop border">
+                <div class="top-title rightTop border">
+                    <ul>
+                        <li>
+                            <p>图书馆总人数</p>
+                            <span>365</span>
+                            <!--<span>6</span>
+                            <span>5</span>-->
+                            <b>个</b>
+                            <div class="datashuji">
+                                <span>较昨日增加20人</span>
+                            </div>
+                        </li>
+                        <li>
+                            <p>空余座位</p>
+                            <span>312</span>
+                            <!--<span>3</span>-->
+                            <b>人</b>
+                            <div class="dataright">
+                                <span>较昨日减少20人</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--<span>4561332件</span>-->
+                </div>
+
+                <div class="top-bottom rightTop border">
+                    <!--<div id="map" class="allnav"></div>-->
+                    <div>当前在校学生人数</div>
+                    <span>985人</span>  
+                </div>
+
+
+            </div>
+            <div class="cen-bottom rightTop border">
+                <div class="title">学院地图</div>
+                <div class="bottom-b">
+                    <!-- <div id="schoolmap" class="allnav"></div> -->
+                    <img src="../map.jfif" alt="" style="width: 100%;height: 100%;">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<!-- <script src="https://www.jq22.com/jquery/echarts-4.2.1.min.js"></script> -->
+<!-- <script src="js/china.js"></script>
+<script src="js/index2.js"></script> -->
+
+<script>
+    // import * as echarts from 'echarts';
+    window.onload = function () {
+        echarts_1();
+        echarts_2();
+
+    }
+
+    function echarts_1(){
+        var myChart = echarts.init(document.getElementById('chart111'));
+        // var option;
+        // console.log('aaaaaaaaaaaaa');
+        option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      // Use axis to trigger tooltip
+      type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+    }
+  },
+  legend: {},
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value'
+  },
+  yAxis: {
+    type: 'category',
+    data: ['3201','3202','3203','3204','3301','3302','3303','3304']
+  },
+  series: [
+    {
+      name: '现有人数',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [32,42,34,13,45,24,100,34]
+    },
+    {
+      name: '空余座位',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data:[148,148,145,123,145,164,143,132]
+    },
+
+  ]
+};
+        myChart.setOption(option);
+        window.addEventListener("resize", function () {
+                    myChart.resize();
+                });        
+
+    }
+
+    function echarts_2(){
+        var myChart = echarts.init(document.getElementById('chart222'));
+        option = {
+            xAxis: {
+                type: 'category',
+                data: ['篮球1','篮球2','篮球3','羽球1','羽球2','乒乓球1','乒乓球2']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                data: [5,4,6,4,2,4,2],
+                type: 'bar'
+                }
+            ]
+            };
+        myChart.setOption(option);
+        window.addEventListener("resize", function () {
+                    myChart.resize();
+        });        
+
+    }
+
+</script>
+</body>
+</html>
